@@ -1,3 +1,18 @@
-body {
-    
+.guess {
+	display: inline-block;
+
+	margin: 0.5rem;
+	padding: 0.5rem;
+	height: 3rem;
+	width: 3rem;
+
+	font-size: 2rem;
+	line-height: 2rem;
+	
+	background: #6c757d;
+	border-radius: 0.1rem;
+}
+
+.guess.wrong {
+	background: #dc3545;
 }
