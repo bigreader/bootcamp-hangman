@@ -22,6 +22,7 @@ function reset() {
 	livesLeft = allowedWrongGuesses;
 	updateGuessesDisplay();
 	updateWordDisplay();
+	document.getElementById("gem").src = "assets/img/pink-normal.png";
 }
 
 function newGame() {
@@ -65,6 +66,7 @@ function updateGuessesDisplay() {
 
 	document.getElementById("lives").innerText = livesLeft;
 	if (livesLeft <= 0) {
+		document.getElementById("gem").src = "assets/img/pink-broken.png";
 		setInfo("You lose - the word was <em>" + currentWord + "</em>. Press return to play again!");
 		active = false;
 	}
@@ -87,6 +89,7 @@ function updateWordDisplay() {
 	word.innerText = out.join(" ");
 	word.className = complete ? "text-success" : "";
 	if (complete) {
+		document.getElementById("gem").src = "assets/img/pink-fancy.png";
 		setInfo("You win! Press return to play again.");
 		active = false;
 	}
