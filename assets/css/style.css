@@ -1,5 +1,48 @@
+#lives {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+
+	font-size: 25vw;
+	font-weight: 600;
+	opacity: 0.75;
+}
+
+@media (min-width: 576px) { /* SM */
+	#lives {
+		top: 1rem;
+		font-size: 4rem;
+	}
+}
+
+@media (min-width: 768px) { /* MD */
+	#lives {
+		top: 1rem;
+		font-size: 6rem;
+	}
+}
+
+@media (min-width: 992px) { /* LG */
+	#lives {
+		top: 1rem;
+		font-size: 6rem;
+	}
+}
+
+@media (min-width: 1200px) { /* XL */
+	#lives {
+		top: 1.5rem;
+		font-size: 7rem;
+	}
+}
+
 #guessed {
 	min-height: 100px;
+}
+
+#guessed.empty {
+	min-height: 0;
 }
 
 .guess {
@@ -22,5 +65,5 @@
 }
 
 .guess.repeated {
-	border: 0.1rem solid #17a2b8;
+	background: #17a2b8;
 }
