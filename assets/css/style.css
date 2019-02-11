@@ -1,7 +1,11 @@
+#guessed {
+	min-height: 100px;
+}
+
 .guess {
 	display: inline-block;
 
-	margin: 0.5rem;
+	margin: 0.25rem;
 	padding: 0.5rem;
 	height: 3rem;
 	width: 3rem;
@@ -15,4 +19,8 @@
 
 .guess.wrong {
 	background: #dc3545;
+}
+
+.guess.repeated {
+	border: 0.1rem solid #17a2b8;
 }
