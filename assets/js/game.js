@@ -5,6 +5,10 @@ const words = ["garnet", "amethyst", "pearl", "quartz", "nephrite", "lapis",
 "opal", "sugilite", "alexandrite", "malachite", "sardonyx", "rhodonite",
 "fluorite", "jade", "sunstone", "obsidian"];
 
+const invert = ["agate", "alexandrite", "aquamarine", "bismuth", "citrine",
+"diamond", "emerald", "fluorite", "jade", "jasper", "lapis", "malachite",
+"opal", "pearl", "peridot", "quartz", "sardonyx", "topaz", "zircon"];
+
 const allowedWrongGuesses = 7;
 
 
@@ -22,7 +26,7 @@ function reset() {
 	livesLeft = allowedWrongGuesses;
 	updateGuessesDisplay();
 	updateWordDisplay();
-	document.getElementById("gem").src = "assets/img/pink-normal.png";
+	document.getElementById("gem").src = "assets/img/diamond.png";
 }
 
 function newGame() {
@@ -31,6 +35,12 @@ function newGame() {
 	currentWord = words[Math.floor(Math.random()*words.length)];
 	console.log(currentWord);
 	updateWordDisplay();
+	document.getElementById("gem").src = "assets/img/" + currentWord + ".png";
+	if (invert.includes(currentWord)) {
+		document.getElementById("lives").className = "text-dark";
+	} else {
+		document.getElementById("lives").className = "";
+	}
 
 	setInfo("Press any key to get started!");
 	active = true;
@@ -66,7 +76,6 @@ function updateGuessesDisplay() {
 
 	document.getElementById("lives").innerText = livesLeft;
 	if (livesLeft <= 0) {
-		document.getElementById("gem").src = "assets/img/pink-broken.png";
 		setInfo("You lose - the word was <em>" + currentWord + "</em>. Press return to play again!");
 		active = false;
 	}
@@ -89,7 +98,6 @@ function updateWordDisplay() {
 	word.innerText = out.join(" ");
 	word.className = complete ? "text-success" : "";
 	if (complete) {
-		document.getElementById("gem").src = "assets/img/pink-fancy.png";
 		setInfo("You win! Press return to play again.");
 		active = false;
 	}

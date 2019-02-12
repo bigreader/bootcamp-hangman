@@ -4,38 +4,47 @@
 	left: 0;
 	right: 0;
 
-	font-size: 25vw;
+	font-size: 130px;
 	font-weight: 600;
-	opacity: 0.75;
+	opacity: 0.9;
+}
+
+@media (max-width: 575.98px) { /* XS only */
+	#livesContainer {
+		width: 200px;
+		margin: 0 auto;
+	}
 }
 
 @media (min-width: 576px) { /* SM */
 	#lives {
-		top: 1rem;
+		top: 1.5rem;
 		font-size: 4rem;
 	}
 }
 
 @media (min-width: 768px) { /* MD */
 	#lives {
-		top: 1rem;
+		top: 2rem;
 		font-size: 6rem;
 	}
 }
 
 @media (min-width: 992px) { /* LG */
 	#lives {
-		top: 1rem;
+		top: 2rem;
 		font-size: 6rem;
 	}
 }
 
 @media (min-width: 1200px) { /* XL */
 	#lives {
-		top: 1.5rem;
+		top: 2.5rem;
 		font-size: 7rem;
 	}
 }
+
+
 
 #guessed {
 	min-height: 100px;
