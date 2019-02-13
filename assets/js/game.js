@@ -18,14 +18,16 @@ var guessedLetters = [];
 var repeatedGuess = "";
 var livesLeft = allowedWrongGuesses;
 var active = false;
+var wins = 0;
+var streak = 0;
 
 function reset() {
 	currentWord = "";
 	guessedLetters = [];
 	repeatedGuess = "";
 	livesLeft = allowedWrongGuesses;
-	updateGuessesDisplay();
-	updateWordDisplay();
+	updateGuesses();
+	updateWord();
 	document.getElementById("gem").src = "assets/img/diamond.png";
 }
 
@@ -34,7 +36,7 @@ function newGame() {
 
 	currentWord = words[Math.floor(Math.random()*words.length)];
 	console.log(currentWord);
-	updateWordDisplay();
+	updateWord();
 	document.getElementById("gem").src = "assets/img/" + currentWord + ".png";
 	if (invert.includes(currentWord)) {
 		document.getElementById("lives").className = "text-dark";
@@ -46,7 +48,7 @@ function newGame() {
 	active = true;
 }
 
-function updateGuessesDisplay() {
+function updateGuesses() {
 	livesLeft = allowedWrongGuesses;
 
 	var guessedDiv = document.getElementById("guessed")
@@ -77,11 +79,12 @@ function updateGuessesDisplay() {
 	document.getElementById("lives").innerText = livesLeft;
 	if (livesLeft <= 0) {
 		setInfo("You lose - the word was <em>" + currentWord + "</em>. Press return to play again!");
+		updateWins(false);
 		active = false;
 	}
 }
 
-function updateWordDisplay() {
+function updateWord() {
 	var out = [];
 	var complete = true;
 	for (var i=0; i<currentWord.length; i++) {
@@ -99,8 +102,28 @@ function updateWordDisplay() {
 	word.className = complete ? "text-success" : "";
 	if (complete) {
 		setInfo("You win! Press return to play again.");
+		updateWins(true);
 		active = false;
 	}
+}
+
+function updateWins(won) {
+	if (!active) return;
+
+	if (won) {
+		wins++;
+		streak++;
+	} else {
+		streak = 0;
+	}
+
+	var out = wins;
+	out += (wins===1)? " win" : " wins"
+	if (streak > 2) {
+		// only show if streak is impressive
+		out += " - " + streak + " word streak!"
+	}
+	document.getElementById("wins").innerText = out;
 }
 
 function setInfo(str) {
@@ -125,13 +148,13 @@ document.onkeypress = function(event) {
 	if (guessedLetters.includes(key)) {
 		console.log("repeated:", key);
 		repeatedGuess = key;
-		updateGuessesDisplay();
+		updateGuesses();
 	} else {
 		console.log("guess:", key);
 		guessedLetters.push(event.key);
 		repeatedGuess = "";
-		updateGuessesDisplay();
-		updateWordDisplay();
+		updateGuesses();
+		updateWord();
 	}
 
 	// remove duplicates from guessedLetters
