@@ -28,7 +28,6 @@ function reset() {
 	livesLeft = allowedWrongGuesses;
 	updateGuesses();
 	updateWord();
-	document.getElementById("gem").src = "assets/img/diamond.png";
 }
 
 function newGame() {
